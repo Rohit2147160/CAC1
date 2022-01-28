@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/lss.css" />
+    <title>Feedback Form</title>
+    <style>
+        span {
+            display: block;
+            margin-left: 20px;
+            color: red;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <center><b>
+            <h1><br>Christ University</h1>
+            <p>Hosur Rd, Bhavani Nagar, S.G. Palya, Bengaluru, Karnataka 560029 , Bangalore , Karnataka , India</p>
+            <a href="https://christuniversity.in/" target="blank">Official Website</a>
+            <form onsubmit="submitForm()">
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Name" id="name" required
+                        oninput=" this.value = this.value.replace(/[0-9]/g,'')" />
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" placeholder="Email" id="email" required />
+                    <span></span>
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-phone"></i>
+                    <input type="tel" placeholder="Phone" id="phone" required />
+                    <span></span>
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-address-book"></i>
+                    <input type="text" placeholder="Address" id="address" required />
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Password" id="password1" required />
+                    <span></span>
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Confirm Password" id="password2" required />
+                </div>
+
+                <h2>What do you like in college</h2>
+                <label for="student"> Student <input type="checkbox" id="student" name="student" value="Student"> <label
+                        for="location">Location <input type="checkbox" id="location" name="location"
+                            value="Location"><label for="campus">Campus <input type="checkbox" id="campus" name="campus"
+                                value="Campus"><label for="atmosphere">Atmosphere<input type="checkbox" id="atmosphere"
+                                    name="atmosphere" value="Atmosphere"><label for="dorm">Dorm-Rooms <input
+                                        type="checkbox" id="dorm" name="dorm" value="Dorm-Rooms"> <label
+                                        for="sports">Sports <input type="checkbox" id="sports" name="sports"
+                                            value="Sports"></label>
+                                </label>
+                            </label>
+                        </label>
+                    </label>
+                </label>
+
+                <br>
+                <br>
+
+                <h2>How did you know about Christ University?</h2>
+                <label for="friends">Friends <input type="radio" id="friends" name="know" value="friends"> <label
+                        for="tel">Television <input type="radio" id="tel" name="know" value="television"> <label
+                            for="net">Internet
+                            <input type="radio" id="net" name="know" value="internet">
+                            <label for="other">Other<input type="radio" id="other" name="know" value="other">
+                            </label><br><br>
+
+                            <textarea id="review" name="review" placeholder="Additional Comments" rows="4" cols="50"
+                                style="margin-left: 10px;"></textarea><br>
+
+                            <input type="submit" class="btn" value="Submit" onclick="empty()" />
+                            <input type="reset" class="btn1" value="Reset">
+            </form>
+
+            <script>
+                var email = document.getElementById('email');
+                var span = document.getElementsByTagName('span');
+
+                email.oninput = function () {
+                    const regex1 = /^\w+([\.-]?\w+)+@(christuniversity.in|christuniversity.com)$/;
+                    const regex2 = /^\w+([\.-]?\w+)+@(christuniversity.in|christuniversity.com)$/;
+                    if (regex1.test(email.value) || regex2.test(email.value)) {
+                        span[0].innerText = "Valid";
+                        span[0].style.color = "lime";
+                    }
+                    else {
+                        span[0].innerText = "Invalid Email Id";
+                        span[0].style.color = "red";
+                    }
+                }
+
+                var phone = document.getElementById('phone');
+                var phnumber = /[0-9]{10}/
+                var span = document.getElementsByTagName('span');
+                phone.oninput = function () {
+
+                    if (!phnumber.test(phone.value)) {
+                        span[1].innerText = "Invalid";
+                        span[1].style.color = "red";
+                    }
+                    else {
+                        span[1].innerText = "Valid";
+                        span[1].style.color = "lime";
+                    }
+
+                }
+
+                function empty() {
+                    var name = document.getElementById('name')
+                    var email = document.getElementById('email')
+                    var phone = document.getElementById('phone')
+                    var address = document.getElementById('address')
+                    var password1 = document.getElementById('password1')
+                    var password2 = document.getElementById('password2')
+
+
+                    if (
+                        !name.value ||
+                        !email.value ||
+                        !phone.value ||
+                        !address.value ||
+                        !password1.value ||
+                        !password2.value
+                    ) {
+                        alert("All Fields are mandatory\n")
+                        return
+                    }
+                }
+
+                var password1 = document.getElementById('password1')
+                var span = document.getElementsByTagName('span');
+                password1.oninput = function () {
+
+                    if (password1.value.length <= 8) {
+                        span[2].innerText = "Weak";
+                        span[2].style.color = "red";
+                    }
+                    else if (password1.value.length >= 8 && password1.value.length <= 12) {
+                        span[2].innerText = "Medium";
+                        span[2].style.color = "lime";
+                    }
+                    else {
+                        span[2].innerText = "Strong";
+                        span[2].style.color = "darkgreen";
+                    }
+
+                }
+
+
+                function submitForm() {
+
+
+                    var password1 = document.getElementById('password1')
+                    var password2 = document.getElementById('password2')
+
+                    var psword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[~`!@#$%^_+={}|:"<>,.?])[A-Za-z\d@$!%*?&]{8,}$/
+                    if (!psword.test(password1.value)) {
+                        alert("Password Criteria not met")
+                        alert("Please include atleast 1 Uppercase Char, 1 Lowercase Char, 1 Number, 1 Special Character and minimum length should be 8 characters.")
+                        return
+                    }
+                    if (password1.value != password2.value) {
+                        alert("Password does not match")
+                        return
+                    }
+
+                    alert("Registered")
+
+                }
+
+            </script>
+
+</body>
+
+</html>
